@@ -28,13 +28,12 @@ function App() {
       })
     }, [])
 
-    const toggleHomeworldVisible = (personID) => {
-      console.log("clicked")
-      setPeopleData(currentPeople => 
-        currentPeople.map(
-          person => person.id === personID 
-          ? {...person, homeworldVisible: !person.homeworldVisible} 
-          : person
+    const toggleHomeworldVisible = (person) => {
+      setPeopleData(peopleData => 
+        peopleData.map(
+          p => person.id === p.id 
+          ? {...p, homeworldVisible: !p.homeworldVisible} 
+          : p
         )
       )
     }
@@ -49,8 +48,7 @@ function App() {
         return <Character 
           key={person.id}
           person={{...person, homeWorldObj}}
-          homeworldVisible={person.homeworldVisible}
-          toggleHomeworldVisible={() => toggleHomeworldVisible(person.id)}
+          toggleHomeworldVisible={() => toggleHomeworldVisible(person)}
         />
       })}
       {/* ❗ Map over the data in state, rendering a Character at each iteration */}
